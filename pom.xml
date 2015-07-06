@@ -969,12 +969,12 @@
     <repository>
       <id>central</id>
       <name>ASD CG Release repository</name>
-      <url>http://10.10.31.71:8081/artifactory/libs-releases-local</url>
+      <url>http://artifactory.center.cg/artifactory/libs-releases-local</url>
     </repository>
     <snapshotRepository>
       <id>snapshots</id>
       <name>ASD CG Snapshots repository</name>
-      <url>http://10.10.31.71:8081/artifactory/libs-snapshots-local</url>
+      <url>http://artifactory.center.cg/artifactory/libs-snapshots-local</url>
       <uniqueVersion>false</uniqueVersion>
     </snapshotRepository>
   </distributionManagement>
