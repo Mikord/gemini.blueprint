@@ -2,30 +2,33 @@
  * Copyright (c) 2006, 2010 VMware Inc.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Apache License v2.0 which accompanies this distribution. 
- * The Eclipse Public License is available at 
+ * and Apache License v2.0 which accompanies this distribution.
+ * The Eclipse Public License is available at
  * http://www.eclipse.org/legal/epl-v10.html and the Apache License v2.0
  * is available at http://www.opensource.org/licenses/apache2.0.php.
- * You may elect to redistribute this code under either of these licenses. 
- * 
+ * You may elect to redistribute this code under either of these licenses.
+ *
  * Contributors:
  *   VMware Inc.
  *****************************************************************************/
 
 package org.eclipse.gemini.blueprint.context.support;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 import org.springframework.beans.factory.xml.DefaultDocumentLoader;
 import org.springframework.beans.factory.xml.DocumentLoader;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Specialized {@link DocumentLoader} that allows blueprint configurations without a schema location to be properly
  * validated.
- * 
+ *
  * @author Costin Leau
  */
 class BlueprintDocumentLoader extends DefaultDocumentLoader {
@@ -39,7 +42,19 @@ class BlueprintDocumentLoader extends DefaultDocumentLoader {
 	@Override
 	protected DocumentBuilderFactory createDocumentBuilderFactory(int validationMode, boolean namespaceAware)
 			throws ParserConfigurationException {
-		DocumentBuilderFactory factory = super.createDocumentBuilderFactory(validationMode, namespaceAware);
+	  Bundle bundle = FrameworkUtil.getBundle(getClass());
+	  ServiceReference<DocumentBuilderFactory> serviceReference = bundle.getBundleContext().getServiceReference(DocumentBuilderFactory.class);
+	  DocumentBuilderFactory factory = bundle.getBundleContext().getService(serviceReference);
+	  factory.setNamespaceAware(namespaceAware);
+
+	  if(validationMode != 0) {
+	    factory.setValidating(true);
+	  }
+	    if(validationMode == 3) {
+	      factory.setNamespaceAware(true);
+	    }
+//	  DocumentBuilderFactory factory = super.createDocumentBuilderFactory(validationMode, namespaceAware);
+          factory.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
 		try {
 			factory.setAttribute(JAXP_SCHEMA_SOURCE, BLUEPRINT_SCHEMA);
 		} catch (IllegalArgumentException ex) {
