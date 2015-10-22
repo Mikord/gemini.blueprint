@@ -251,6 +251,7 @@ class LifecycleManager implements DisposableBean {
 							+ " ms, for bundle " + bundleString);
 			}
 
+		  	timeout = 600000; //TODO: hardcoded timeout due deploy error "Application context ... has timed out waiting for ..."
 			appCtxExecutor.setTimeout(timeout);
 			appCtxExecutor.setWatchdog(timer);
 			appCtxExecutor.setTaskExecutor(executor);
