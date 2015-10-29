@@ -26,7 +26,6 @@ import org.eclipse.gemini.blueprint.extender.internal.dependencies.startup.Depen
 import org.eclipse.gemini.blueprint.extender.internal.support.ExtenderConfiguration;
 import org.eclipse.gemini.blueprint.extender.internal.support.OsgiBeanFactoryPostProcessorAdapter;
 import org.eclipse.gemini.blueprint.extender.internal.util.concurrent.Counter;
-import org.eclipse.gemini.blueprint.extender.internal.util.concurrent.RunnableTimedExecution;
 import org.eclipse.gemini.blueprint.extender.support.ApplicationContextConfiguration;
 import org.eclipse.gemini.blueprint.util.OsgiBundleUtils;
 import org.eclipse.gemini.blueprint.util.OsgiStringUtils;
@@ -251,7 +250,6 @@ class LifecycleManager implements DisposableBean {
 							+ " ms, for bundle " + bundleString);
 			}
 
-		  	timeout = 600000; //TODO: hardcoded timeout due deploy error "Application context ... has timed out waiting for ..."
 			appCtxExecutor.setTimeout(timeout);
 			appCtxExecutor.setWatchdog(timer);
 			appCtxExecutor.setTaskExecutor(executor);

@@ -1,9 +1,9 @@
 Export-Package:
  org.osgi.service.blueprint.container;version="1.0.0",
  org.osgi.service.blueprint.reflect;version="1.0.0"
-Excluded-Exports: 
+Excluded-Exports:
  *.internal*
-Import-Package: 
+Import-Package:
  org.osgi.service.blueprint.container;version="[1.0.0,1.1)",
  org.osgi.service.blueprint.reflect;version="[1.0.0,1.1)",
  org.springframework.aop;version="${spring.version.range.nq}",
