@@ -21,8 +21,6 @@ import org.eclipse.gemini.blueprint.context.DependencyAwareBeanFactoryPostProces
 import org.eclipse.gemini.blueprint.context.DependencyInitializationAwareBeanPostProcessor;
 import org.eclipse.gemini.blueprint.context.OsgiBundleApplicationContextExecutor;
 import org.eclipse.gemini.blueprint.context.event.*;
-import org.eclipse.gemini.blueprint.util.OsgiBundleUtils;
-import org.eclipse.gemini.blueprint.util.OsgiStringUtils;
 import org.eclipse.gemini.blueprint.util.internal.PrivilegedUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -30,7 +28,6 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextException;
 import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.util.Assert;
@@ -218,12 +215,12 @@ public abstract class AbstractDelegatedExecutionApplicationContext extends Abstr
                 if (ObjectUtils.isEmpty(getConfigLocations())) {
                   setConfigLocations(getDefaultConfigLocations());
                 }
-                if (!OsgiBundleUtils.isBundleActive(getBundle())
+/*                if (!OsgiBundleUtils.isBundleActive(getBundle())
                     && !OsgiBundleUtils.isBundleLazyActivated(getBundle())) {
                   throw new ApplicationContextException(
                       "Unable to refresh application context: bundle is neither active nor lazy-activated but "
                           + OsgiStringUtils.bundleStateAsString(getBundle()));
-                }
+                }*/
 
                 ConfigurableListableBeanFactory beanFactory = null;
                 // Prepare this context for refreshing.
