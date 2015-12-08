@@ -14,16 +14,16 @@
 
 package org.eclipse.gemini.blueprint.extender.support.internal;
 
-import java.util.Dictionary;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.gemini.blueprint.context.support.OsgiBundleXmlApplicationContext;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
-import org.eclipse.gemini.blueprint.context.support.OsgiBundleXmlApplicationContext;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+
+import java.util.Dictionary;
 
 /**
  * Utility class for dealing with the extender configuration and OSGi bundle
@@ -99,7 +99,7 @@ public abstract class ConfigUtils {
 
 	public static final boolean DIRECTIVE_CREATE_ASYNCHRONOUSLY_DEFAULT = true;
 
-	public static final long DIRECTIVE_TIMEOUT_DEFAULT = 5 * 60; // 5 minutes
+	public static final long DIRECTIVE_TIMEOUT_DEFAULT = 10 * 60; // 10 minutes
 
 	public static final long DIRECTIVE_NO_TIMEOUT = -2L; // Indicates wait forever
 
