@@ -14,16 +14,15 @@
 
 package org.eclipse.gemini.blueprint.extender.internal.support;
 
+import junit.framework.TestCase;
+import org.eclipse.gemini.blueprint.context.support.OsgiBundleXmlApplicationContext;
+import org.eclipse.gemini.blueprint.extender.support.ApplicationContextConfiguration;
+import org.eclipse.gemini.blueprint.mock.EntryLookupControllingMockBundle;
+
 import java.net.URL;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
-
-import junit.framework.TestCase;
-
-import org.eclipse.gemini.blueprint.context.support.OsgiBundleXmlApplicationContext;
-import org.eclipse.gemini.blueprint.extender.support.ApplicationContextConfiguration;
-import org.eclipse.gemini.blueprint.mock.EntryLookupControllingMockBundle;
 
 /**
  * Test that given a bundle, we can correctly determine the spring configuration
@@ -64,7 +63,7 @@ public class ApplicationContextConfigurationTest extends TestCase {
 		EntryLookupControllingMockBundle aBundle = new EntryLookupControllingMockBundle(null);
 		aBundle.setResultsToReturnOnNextCallToFindEntries(META_INF_SPRING_CONTENT);
 		ApplicationContextConfiguration config = new ApplicationContextConfiguration(aBundle);
-		assertEquals("bundle should timeout in five minutes", new Long(5 * 60 * 1000), new Long(config.getTimeout()));
+		assertEquals("bundle should timeout in five minutes", new Long(10 * 60 * 1000), new Long(config.getTimeout()));
 	}
 
 	public void testBundleWithWaitFiveSecondWaitForTimeout() {

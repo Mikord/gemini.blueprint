@@ -76,7 +76,7 @@ public class ExtenderConfigurationDefaultSettingsTest extends TestCase {
 
 	public void testDependencyWaitTime() throws Exception {
 		// 5 minutes in ms
-		assertEquals(5 * 60 * 1000, config.getDependencyWaitTime());
+		assertEquals(10 * 60 * 1000, config.getDependencyWaitTime());
 	}
 
 	public void testPostProcessors() throws Exception {
