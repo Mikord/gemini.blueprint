@@ -19,6 +19,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 import org.springframework.beans.factory.xml.DefaultDocumentLoader;
 import org.springframework.beans.factory.xml.DocumentLoader;
 
@@ -39,7 +42,31 @@ class BlueprintDocumentLoader extends DefaultDocumentLoader {
 	@Override
 	protected DocumentBuilderFactory createDocumentBuilderFactory(int validationMode, boolean namespaceAware)
 			throws ParserConfigurationException {
-		DocumentBuilderFactory factory = super.createDocumentBuilderFactory(validationMode, namespaceAware);
+		Bundle bundle = FrameworkUtil.getBundle(getClass());
+		DocumentBuilderFactory factory = null;
+
+		if (bundle != null && bundle.getBundleContext() != null) {
+			ServiceReference<DocumentBuilderFactory> serviceReference = bundle.getBundleContext()
+					.getServiceReference(DocumentBuilderFactory.class);
+
+			if (serviceReference != null) {
+				factory = bundle.getBundleContext().getService(serviceReference);
+				factory.setNamespaceAware(namespaceAware);
+
+				if(validationMode != 0) {
+					factory.setValidating(true);
+				}
+				if(validationMode == 3) {
+					factory.setNamespaceAware(true);
+				}
+				factory.setAttribute("http://java.sun.com/xml/jaxp/properties/schemaLanguage", "http://www.w3.org/2001/XMLSchema");
+			}
+		}
+
+		if (factory == null) {
+			factory = super.createDocumentBuilderFactory(validationMode, namespaceAware);
+		}
+
 		try {
 			factory.setAttribute(JAXP_SCHEMA_SOURCE, BLUEPRINT_SCHEMA);
 		} catch (IllegalArgumentException ex) {
