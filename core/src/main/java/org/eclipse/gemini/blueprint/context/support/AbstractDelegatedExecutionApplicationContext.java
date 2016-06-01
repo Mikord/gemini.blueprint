@@ -218,12 +218,12 @@ public abstract class AbstractDelegatedExecutionApplicationContext extends Abstr
                 if (ObjectUtils.isEmpty(getConfigLocations())) {
                   setConfigLocations(getDefaultConfigLocations());
                 }
-                if (!OsgiBundleUtils.isBundleActive(getBundle())
-                    && !OsgiBundleUtils.isBundleLazyActivated(getBundle())) {
-                  throw new ApplicationContextException(
-                      "Unable to refresh application context: bundle is neither active nor lazy-activated but "
-                          + OsgiStringUtils.bundleStateAsString(getBundle()));
-                }
+//								if (!OsgiBundleUtils.isBundleActive(getBundle())
+//										&& !OsgiBundleUtils.isBundleLazyActivated(getBundle())) {
+//									throw new ApplicationContextException(
+//											"Unable to refresh application context: bundle is neither active nor lazy-activated but "
+//													+ OsgiStringUtils.bundleStateAsString(getBundle()));
+//								}
 
                 ConfigurableListableBeanFactory beanFactory = null;
                 // Prepare this context for refreshing.
