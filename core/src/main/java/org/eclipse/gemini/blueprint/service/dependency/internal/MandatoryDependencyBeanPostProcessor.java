@@ -76,4 +76,9 @@ public class MandatoryDependencyBeanPostProcessor implements BeanFactoryAware, B
 			manager.removeServiceExporter(bean, beanName);
 		}
 	}
+
+	@Override
+	public boolean requiresDestruction(Object o) {
+		return true;
+	}
 }

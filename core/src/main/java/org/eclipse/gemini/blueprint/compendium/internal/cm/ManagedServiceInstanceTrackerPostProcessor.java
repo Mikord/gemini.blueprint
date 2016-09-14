@@ -73,6 +73,11 @@ public class ManagedServiceInstanceTrackerPostProcessor implements BeanFactoryAw
 		}
 	}
 
+	@Override
+	public boolean requiresDestruction(Object bean) {
+		return true;
+	}
+
 	public void setBundleContext(BundleContext bundleContext) {
 		this.bundleContext = bundleContext;
 	}
