@@ -11,7 +11,7 @@
     <groupId>org.eclipse.gemini.blueprint</groupId>
     <artifactId>gemini-blueprint</artifactId>
     <!-- Note: When updating the version, ensure it is a valid OSGi version -->
-    <version>2.0.0.RELEASE-cg-2</version>
+    <version>2.0.0.RELEASE-cg-3</version>
     <packaging>pom</packaging>
     <name>Gemini Blueprint</name>
     <url>http://www.eclipse.org/gemini/blueprint/</url>
@@ -978,27 +978,34 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
 
+        <profile>
+            <id>artifactory</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>!skipDefault</name>
+                </property>
+            </activation>
+            <distributionManagement>
+                <downloadUrl>http://www.eclipse.org/gemini/blueprint/download/</downloadUrl>
+                <repository>
+                    <id>central</id>
+                    <name>ASD CG Release repository</name>
+                    <url>http://artifactory.cg.ru/artifactory/libs-releases-local</url>
+                </repository>
+                <snapshotRepository>
+                    <id>snapshots</id>
+                    <name>ASD CG Snapshots repository</name>
+                    <url>http://artifactory.cg.ru/artifactory/libs-snapshots-local</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 
     <!-- ======================================= -->
     <!--          Website and reporting          -->
     <!-- ======================================= -->
-
-    <distributionManagement>
-        <downloadUrl>http://www.eclipse.org/gemini/blueprint/download/</downloadUrl>
-        <repository>
-            <id>central</id>
-            <name>ASD CG Release repository</name>
-            <url>http://artifactory.cg.ru/artifactory/libs-releases-local</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>ASD CG Snapshots repository</name>
-            <url>http://artifactory.cg.ru/artifactory/libs-snapshots-local</url>
-        </snapshotRepository>
-    </distributionManagement>
-
 
     <!-- ================================================ -->
     <!--            Repository Configuration              -->
