@@ -14,12 +14,17 @@
 
 package org.eclipse.gemini.blueprint.io;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.gemini.blueprint.io.internal.OsgiResourceUtils;
 import org.springframework.core.io.ContextResource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.util.StringUtils;
 
 /**
  * Extension to {@link UrlResource} that adds support for
@@ -30,7 +35,7 @@ import org.springframework.core.io.UrlResource;
  * @author Costin Leau
  */
 class UrlContextResource extends UrlResource implements ContextResource {
-
+  private static final Log logger = LogFactory.getLog(UrlContextResource.class);
 	private final String pathWithinContext;
 
 
@@ -62,4 +67,34 @@ class UrlContextResource extends UrlResource implements ContextResource {
 	public String getPathWithinContext() {
 		return pathWithinContext;
 	}
+
+	  @Override
+  public int hashCode() {
+    try {
+      URI uri = getURI();
+      URL url = getURL();
+      logger.debug("Trying to lookupAllHostAddr for URL = " + url.toString() + " host = " + url.getHost() + " port = " + url.getPort());
+      URL cleanedUrl = getCleanedUrl(url, uri.toString());
+      return cleanedUrl.toString().hashCode();
+    }
+    catch (IOException e) {
+      try {
+        return getURL().toString().hashCode();
+      }
+      catch (IOException e1) {
+        throw new RuntimeException(e1);
+      }
+    }
+  }
+
+  private URL getCleanedUrl(URL originalUrl, String originalPath) {
+    try {
+      return new URL(StringUtils.cleanPath(originalPath));
+    }
+    catch (MalformedURLException ex) {
+      // Cleaned URL path cannot be converted to URL
+      // -> take original URL.
+      return originalUrl;
+    }
+  }
 }
