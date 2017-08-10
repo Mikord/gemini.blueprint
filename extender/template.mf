@@ -32,7 +32,6 @@ Spring-Version: ${spring.maven.artifact.version}
 Build-Jdk: ${java.version}
 Build-Plan: ${env.buildPlan}
 Build-Number: ${env.buildNumber}
-Git-Revision: ${git.commit.id.describe}
 Excluded-Imports: com_cenqua_clover*
 Ignored-Existing-Headers:
  Ant-Version,
