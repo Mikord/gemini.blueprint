@@ -4,7 +4,7 @@
  xmlns:bp="http://www.osgi.org/xmlns/blueprint/v1.0.0"
  xsi:schemaLocation="
   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-  http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+  http://www.osgi.org/xmlns/blueprint/v1.0.0 https://osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
  <bp:blueprint>
  	<bp:bean id="nested-bean" class="java.lang.Object" />
