@@ -33,7 +33,6 @@ Spring-Version: ${spring.maven.artifact.version}
 Build-Jdk: ${java.version}
 Build-Plan: ${env.buildPlan}
 Build-Number: ${env.buildNumber}
-Git-Revision: ${git.commit.id.describe}
 Ignored-Existing-Headers:
  Ant-Version,
  Archiver-Version,
