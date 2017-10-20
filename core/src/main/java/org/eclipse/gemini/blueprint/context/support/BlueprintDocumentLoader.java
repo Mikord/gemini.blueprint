@@ -34,7 +34,7 @@ import org.springframework.beans.factory.xml.DocumentLoader;
 class BlueprintDocumentLoader extends DefaultDocumentLoader {
 
 	static final String JAXP_SCHEMA_SOURCE = "http://java.sun.com/xml/jaxp/properties/schemaSource";
-	static final String BLUEPRINT_SCHEMA = "http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd";
+	static final String BLUEPRINT_SCHEMA = "https://osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd";
 
 	/** logger */
 	private static final Log log = LogFactory.getLog(BlueprintDocumentLoader.class);
