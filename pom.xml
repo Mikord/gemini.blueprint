@@ -901,7 +901,7 @@
             <distributionManagement>
                 <downloadUrl>http://www.eclipse.org/gemini/blueprint/download/</downloadUrl>
                 <repository>
-                    <id>central</id>
+                    <id>mikord</id>
                     <name>ASD CG Release repository</name>
                     <url>http://repo.cg.ru/repository/libs-releases-local</url>
                 </repository>
